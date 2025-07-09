@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Resume</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: white;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: #1e1e2f;
+    }
+    .navbar span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .navbar img {
+      width: 40px;
+      height: 40px;
+    }
+    .menu-icon {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #1e1e2f;
+      color: white;
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show {
+      right: 0;
+    }
+    .sidebar .close-btn {
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+    }
+    .sidebar ul {
+      list-style: none;
+      margin-top: 50px;
+    }
+    .sidebar ul li {
+      margin: 20px 0;
+    }
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    /* Hero */
+    .hero-box {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(5px);
+      margin-top: 50px;
+      padding: 50px 0;
+    }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1700px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    .hero-text h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      animation: fadeInLeft 2s ease;
+    }
+    .resume-caption {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 25px;
+      border-radius: 15px;
+      margin: 30px 0;
+      max-width: 520px;
+      transform: translateY(25px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+    }
+    .resume-caption:hover {
+      transform: translateY(35px);
+    }
+    .resume-caption p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .build-button-container {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .hero-text .btn {
+      background: #ff69b4;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      color: #fff;
+      text-decoration: none;
+      animation: pulse 2s infinite;
+      margin-top: 20px;
+    }
+    .hero img {
+      flex: 1;
+      width: 300px;
+      filter: brightness(90%) contrast(105%);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes fadeInLeft {
+      from {opacity: 0; transform: translateX(-50px);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+
+    /* Steps */
+    .steps-section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .steps-section h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .step {
+      background: #2a2a40;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .step:hover {
+      transform: translateY(-10px);
+    }
+    .step img {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+
+    /* Templates Section */
+    .templates-section {
+      padding: 60px 20px;
+      text-align: center;
+      background-color: #1b1b2f;
+    }
+    .templates-section h2 {
+      font-size: 28px;
+      color: #ff69b4;
+      margin-bottom: 20px;
+    }
+    .template-gallery {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .template-card {
+      background: #22223a;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .template-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+    }
+    .template-card {
+  background: #22223a;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 400px; /* adjust as needed */
+}
+
+.template-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+}
+
+.template-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+    /* Footer */
+    .footer {
+      background-color: #121212;
+      padding: 30px;
+      text-align: center;
+      color: #ccc;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f0c29;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #ff69b4;
+      border-top: 5px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="spinner"></div>
+</div>
+
+<div class="navbar">
+  <span><img src="logo1.png" alt="Logo"> QUICK RESUME</span>
+  <div class="menu-icon" onclick="toggleSidebar()">&#8942;</div>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="close-btn" onclick="toggleSidebar()">&times;</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#hero">Build Resume</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#footer">Contact</a></li>
+  </ul>
+</div>
+
+<div class="hero-box">
+  <div class="hero" id="hero">
+    <div class="hero-text">
+      <h1>Build your professional resume in minutes!</h1>
+      <div class="resume-caption">
+        <p>💡 Resume writing made effortless.</p>
+        <p>✅ Pick a beautiful template, add your info, and download instantly.</p>
+        <p>🚀 Save time and impress recruiters with stunning designs.</p>
+        <p>📄 Trusted by job seekers around the world for fast and efficient CV building.</p>
+      </div>
+      <div class="build-button-container">
+        <a href="log.php" class="btn">BUILD MY RESUME</a>
+      </div>
+    </div>
+    <img src="h1.png" alt="Hero Image" />
+  </div>
+</div>
+
+<div class="steps-section" id="steps">
+  <h2>3 EASY STEPS TO CREATE YOUR PERFECT RESUME</h2>
+  <div class="steps">
+    <div class="step">
+      <img src="res.jpg" alt="Step 1" />
+      <h3>Choose Template</h3>
+      <p>Select a resume layout that fits your job role and personality.</p>
+    </div>
+    <div class="step">
+      <img src="pen.jpg" alt="Step 2" />
+      <h3>Fill Your Info</h3>
+      <p>Use examples and easy tools to add your data.</p>
+    </div>
+    <div class="step">
+      <img src="res_down.png" alt="Step 3" />
+      <h3>Download Resume</h3>
+      <p>Export your polished resume and start applying!</p>
+    </div>
+  </div>
+</div>
+
+<div class="templates-section" id="templates">
+  <h2>PROFESSIONAL RESUME TEMPLATES</h2>
+  <div class="template-gallery">
+    <a href="log.php" class="template-card"><img src="t1.png" alt="Template 1" /></a>
+    <a href="log.php" class="template-card"><img src="t2.png" alt="Template 2" /></a>
+    <a href="log.php" class="template-card"><img src="t3.png" alt="Template 3" /></a>
+    <a href="log.php" class="template-card"><img src="t4.png" alt="Template 4" /></a>
+    <a href="log.php" class="template-card"><img src="t5.png" alt="Template 5" /></a>
+  </div>
+</div>
+
+<div class="footer" id="footer">
+  <p>+91-9876543210 | Gouri Ghosh | @It_s_gouri | gourigghosh@gmail.com</p>
+  <p>&copy; 2025 Quick Resume. All rights reserved.</p>
+</div>
+
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('show');
+  }
+
+  window.addEventListener('load', function () {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 500);
+  });
+</script>
+</body>
+</html>

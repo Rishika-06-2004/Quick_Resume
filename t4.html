@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. John Doe - Cardiologist</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .cv-container {
+            display: flex;
+            width: 80%;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative; /* Ensures the plus sign stays relative to the container */
+        }
+        .plus-icon {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: brown;
+            color: white;
+            font-size: 140px;
+            font-weight: bold;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .left-column {
+            width: 30%;
+            padding: 15px;
+            background: rgba(139, 69, 19, 0.8);
+            color: white;
+        }
+        .right-column {
+            width: 70%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #333;
+        }
+        .section {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            background: transparent;
+        }
+        .profile-pic {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+	    border-bottom:3px solid black;
+        }
+        .header .details {
+            text-align: right;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #333;
+        }
+        .header p {
+            margin: 3px 0;
+            font-size: 15px;
+            color: #444;
+        }
+        .skills .skill-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 5px;
+            margin: 4px 0;
+        }
+        .skills .skill-fill {
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 5px;
+        }
+        .languages .stars {
+            color: gold;
+        }
+        ul {
+            padding-left: 15px;
+        }
+        ul li {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <div class="plus-icon">+</div> <!-- Plus sign added -->
+
+        <!-- Left Column -->
+        <div class="left-column">
+            <div class="section">
+                <img src="dr.jpg" alt="Dr. John Doe" class="profile-pic">
+            </div>
+            <div class="section">
+                <h2> <i class="bi bi-person-circle"></i> About Me</h2>
+                <p>A highly skilled and experienced cardiologist with over a decade of expertise in diagnosing and treating cardiovascular diseases. Committed to providing the best patient care and advancing medical research in cardiology.</p>
+            </div>
+            <div class="section">
+                <h2><i class="bi bi-person-check"></i> References</h2>
+                <p><strong>MD, Dr. Richard Miles</strong><br>Senior Consultant Cardiologist<br> &nbsp ABC Medical Center<br><i class="bi bi-envelope"></i> richardmiles@abcmedical.com<br><i class="bi bi-telephone"></i> +91 98765 12345</p>
+            </div>
+            <div class="section">
+                <h2> <i class="bi bi-balloon-heart"></i> Hobbies</h2>
+                <ul>
+                    <li>Medical Research & Innovations</li>
+                    <li>Attending Global Cardiology Conferences</li>
+                    <li>Publishing Research Papers</li>
+                    <li>Teaching & Mentoring Medical Students</li>
+                </ul>
+            </div>
+            <div class="section languages">
+                <h2> <i class="bi bi-translate"></i> Languages</h2>
+                <p>English <span class="stars">★★★★★</span></p>
+                <p>Spanish <span class="stars">★★★★☆</span></p>
+                <p>French <span class="stars">★★★☆☆</span></p>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <div class="section header">
+                <div>
+                    <h1>Dr. John Doe</h1>
+                    <p>Cardiologist | Heart Specialist</p>
+                </div>
+                <div class="details">
+                    <p><i class="bi bi-geo-alt"></i> New York, USA</p>
+                    <p><i class="bi bi-telephone"></i> +91 98765 43210</p>
+                    <p><i class="bi bi-envelope"></i> dr.john@example.com</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2> <i class="bi bi-person-bounding-box"></i> Objective</h2>
+                <p>To provide exceptional cardiac care, leveraging my expertise in interventional cardiology, cardiovascular surgeries, and patient-centered treatment. Dedicated to research and innovation in cardiology.</p>
+            </div>
+
+            <div class="section">
+                <h2><i class="bi bi-book"></i> Education</h2>
+                <p><strong>Doctor of Medicine (MD) - Cardiology</strong><br>Harvard Medical School (2013-2017) - <b>92%</b></p>
+                <p><strong>Bachelor of Medicine, Bachelor of Surgery (MBBS)</strong><br>Johns Hopkins University (2008-2013) - <b>89%</b></p>
+            </div>
+
+            <div class="section">
+                <h2><i class="bi bi-heart-pulse"></i> Experience</h2>
+                <p><strong>Senior Cardiologist - New York Heart Institute</strong> (2020-Present)</p>
+                <ul>
+                    <li>Performed over 600 successful heart surgeries, specializing in minimally invasive cardiac procedures.</li>
+                    <li>Led a team of 10 cardiologists in implementing advanced diagnostic techniques.</li>
+                </ul>
+                <p><strong>Cardiology Consultant - Boston Medical Center</strong> (2017-2020)</p>
+                <ul>
+                    <li>Developed innovative patient treatment plans, improving recovery rates by 25%.</li>
+                </ul>
+            </div>
+
+            <div class="section skills">
+                <h2> <i class="bi bi-clipboard2-pulse"></i> Skills</h2>
+                <p>Medical Research</p>
+                <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+                <p>Patient Care</p>
+                <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div>
+                <p>Cardiac Surgery</p>
+                <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                <p>Interventional Cardiology</p>
+                <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+                <p>Cardiac Catheterization</p>
+                <div class="skill-bar"><div class="skill-fill" style="width: 83%;"></div></div>
+                <p>Pacemaker Implantation</p>
+                <div class="skill-bar"><div class="skill-fill" style="width: 78%;"></div></div>
+                <p>Hypertension & Cholesterol Management</p>
+                <div class="skill-bar"><div class="skill-fill" style="width: 92%;"></div></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

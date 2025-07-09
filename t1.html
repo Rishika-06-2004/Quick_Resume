@@ -1,0 +1,165 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect form data
+    $name = $_POST['name'];
+    $role = $_POST['role'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $location = $_POST['location'];
+
+    // Languages and stars
+    $languages = $_POST['languages'];
+    $stars = $_POST['stars'];
+
+    // Soft skills
+    $softskills = $_POST['softskills'];
+
+    // Work Experience
+    $companies = $_POST['company'];
+    $join_years = $_POST['join_year'];
+    $resign_years = $_POST['resign_year'];
+    $tasks = $_POST['tasks'];
+
+    // Education
+    $masters_uni = $_POST['masters_uni'] ?? '';
+    $masters_year = $_POST['masters_year'] ?? '';
+    $masters_percentage = $_POST['masters_percentage'] ?? '';
+    
+    $bachelors_uni = $_POST['bachelors_uni'] ?? '';
+    $bachelors_year = $_POST['bachelors_year'] ?? '';
+    $bachelors_percentage = $_POST['bachelors_percentage'] ?? '';
+    
+    $hs_school = $_POST['hs_school'];
+    $hs_year = $_POST['hs_year'];
+    $hs_percentage = $_POST['hs_percentage'];
+
+    $board_school = $_POST['board_school'];
+    $board_year = $_POST['board_year'];
+    $board_percentage = $_POST['board_percentage'];
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My CV</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .cv-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .cv-header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+    .cv-header h3 {
+      font-size: 1.5rem;
+      color: #555;
+    }
+    .cv-section {
+      margin-bottom: 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .cv-section h4 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    .cv-section ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .cv-section li {
+      margin-bottom: 10px;
+    }
+    .cv-footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- CV HEADER -->
+    <div class="cv-header">
+      <h1><?php echo $name; ?></h1>
+      <h3><?php echo $role; ?></h3>
+      <p><strong>Email:</strong> <?php echo $email; ?> | <strong>Phone:</strong> <?php echo $phone; ?> | <strong>Location:</strong> <?php echo $location; ?></p>
+    </div>
+
+    <!-- LANGUAGES SECTION -->
+    <div class="cv-section">
+      <h4>Languages</h4>
+      <ul>
+        <?php
+        foreach ($languages as $index => $language) {
+            echo "<li>" . $language . " - " . str_repeat("⭐", $stars[$index]) . "</li>";
+        }
+        ?>
+      </ul>
+    </div>
+
+    <!-- SOFT SKILLS SECTION -->
+    <div class="cv-section">
+      <h4>Soft Skills</h4>
+      <ul>
+        <?php
+        foreach ($softskills as $skill) {
+            echo "<li>" . $skill . "</li>";
+        }
+        ?>
+      </ul>
+    </div>
+
+    <!-- WORK EXPERIENCE SECTION -->
+    <div class="cv-section">
+      <h4>Work Experience</h4>
+      <?php
+      for ($i = 0; $i < count($companies); $i++) {
+        echo "<div><strong>" . $companies[$i] . "</strong> (" . $join_years[$i] . " - " . $resign_years[$i] . ")</div>";
+        echo "<ul>";
+        $taskList = explode(',', $tasks[$i]);
+        foreach ($taskList as $task) {
+            echo "<li>" . trim($task) . "</li>";
+        }
+        echo "</ul>";
+      }
+      ?>
+    </div>
+
+    <!-- EDUCATION SECTION -->
+    <div class="cv-section">
+      <h4>Education</h4>
+      <p><strong>Higher Secondary:</strong> <?php echo $hs_school . " | Year: " . $hs_year . " | Percentage: " . $hs_percentage; ?></p>
+      <p><strong>10th Class Board:</strong> <?php echo $board_school . " | Year: " . $board_year . " | Percentage: " . $board_percentage; ?></p>
+
+      <?php
+      if (!empty($masters_uni)) {
+          echo "<p><strong>Master's Degree:</strong> " . $masters_uni . " | Year: " . $masters_year . " | Percentage: " . $masters_percentage . "</p>";
+      }
+      if (!empty($bachelors_uni)) {
+          echo "<p><strong>Bachelor's Degree:</strong> " . $bachelors_uni . " | Year: " . $bachelors_year . " | Percentage: " . $bachelors_percentage . "</p>";
+      }
+      ?>
+    </div>
+
+    <div class="cv-footer">
+      <p>Generated with ❤️</p>
+    </div>
+  </div>
+</body>
+</html>
